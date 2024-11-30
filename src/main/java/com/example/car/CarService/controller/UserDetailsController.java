@@ -11,6 +11,10 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/userDetails")
+@CrossOrigin(origins = {
+        "http://127.0.0.1:5500/CarServiceFrontend/loginPage1.html",
+        "http://127.0.0.1:5500/CarServiceFrontend/UserLogin.html"
+})
 public class UserDetailsController {
     private UserDetailsService userDetailsService;
 
