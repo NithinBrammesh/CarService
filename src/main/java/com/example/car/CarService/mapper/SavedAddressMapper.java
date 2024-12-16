@@ -4,11 +4,11 @@ import com.example.car.CarService.dto.CarDto;
 import com.example.car.CarService.dto.SavedAddressDto;
 import com.example.car.CarService.model.Car;
 import com.example.car.CarService.model.SavedAddress;
-import com.example.car.CarService.model.UserDetails;
+import com.example.car.CarService.model.carUserDetails;
 
 public class SavedAddressMapper {
 
-  public static SavedAddress mapToSavedAddress(SavedAddressDto savedAddressDto, UserDetails userDetails) {
+  public static SavedAddress mapToSavedAddress(SavedAddressDto savedAddressDto, carUserDetails caruserDetails) {
         SavedAddress savedAddress = new SavedAddress(
                 savedAddressDto.getSid(),
                 savedAddressDto.getAddressNickName(),
@@ -18,7 +18,7 @@ public class SavedAddressMapper {
                 savedAddressDto.getCity(),
                 savedAddressDto.getState(),
                 savedAddressDto.getNation(),
-                userDetails
+                caruserDetails
         );
         return savedAddress;
 
@@ -36,8 +36,8 @@ public class SavedAddressMapper {
         savedAddressDto.setNation(savedAddress.getNation());
 
         // Map UserDetails' ID to userId in the DTO
-        if (savedAddress.getUserDetails() != null) {
-            savedAddressDto.setUserId(savedAddress.getUserDetails().getUserId());
+        if (savedAddress.getCarUserDetails() != null) {
+            savedAddressDto.setUserId(savedAddress.getCarUserDetails().getUserId());
         }
 
         return savedAddressDto;

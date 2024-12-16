@@ -19,4 +19,3 @@ COPY --from=build /app/target/CarService-0.0.1-SNAPSHOT.jar application.jar
 
 # Run the application
 ENTRYPOINT ["java", "-jar", "application.jar"]
-

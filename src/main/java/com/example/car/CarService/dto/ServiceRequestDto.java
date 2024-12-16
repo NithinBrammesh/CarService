@@ -1,8 +1,10 @@
 package com.example.car.CarService.dto;
 
+import  com.example.car.CarService.model.Status;
 import com.example.car.CarService.model.Car;
 import com.example.car.CarService.model.SavedAddress;
-import com.example.car.CarService.model.UserDetails;
+import com.example.car.CarService.model.ServiceRequest;
+import com.example.car.CarService.model.carUserDetails;
 import lombok.*;
 
 @Data
@@ -18,7 +20,12 @@ public class ServiceRequestDto {
 
     private Car car;
 
-    private UserDetails userDetails;
+    private carUserDetails caruserDetails;
 
     private SavedAddress savedAddress;
+
+    private Status status;
+
+    private int Payment;
+
 }

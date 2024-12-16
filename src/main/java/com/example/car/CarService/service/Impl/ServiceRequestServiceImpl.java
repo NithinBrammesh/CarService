@@ -6,6 +6,7 @@ import com.example.car.CarService.dto.ServiceRequestDto;
 
 import com.example.car.CarService.mapper.ServiceRequestMapper;
 
+import com.example.car.CarService.model.Car;
 import com.example.car.CarService.model.ServiceRequest;
 
 import com.example.car.CarService.repository.ServiceRequestRepository;
@@ -25,6 +26,9 @@ public class ServiceRequestServiceImpl implements ServiceRequestService{
         this.serviceRequestRepository = serviceRequestRepository;
     }
 
+//    public List<ServiceRequest> getServiceRequestsByCar(Car car) {
+//        return serviceRequestRepository.findByCar(car);
+//    }
 
     public List<ServiceRequestDto> getAllServiceRequest() {
         return serviceRequestRepository.findAll()
@@ -47,18 +51,29 @@ public class ServiceRequestServiceImpl implements ServiceRequestService{
      return ServiceRequestMapper.mapToServiceRequestDto(serviceRequest);
     }
 
-    public ServiceRequestDto updateServiceRequest(int Id, ServiceRequestDto serviceRequestDto){
-        return serviceRequestRepository.findById(Id).map(existingServiceReqest->{
-            existingServiceReqest.setRequestId(serviceRequestDto.getRequestId());
-            existingServiceReqest.setCar(serviceRequestDto.getCar());
-            existingServiceReqest.setDate(serviceRequestDto.getDate());
-            existingServiceReqest.setSavedAddress(serviceRequestDto.getSavedAddress());
-            existingServiceReqest.setUserDetails(serviceRequestDto.getUserDetails());
-            return ServiceRequestMapper.mapToServiceRequestDto(existingServiceReqest);
-        })
-                .orElse(null);
+    @Override
+    public ServiceRequestDto updateServiceRequest(int id, ServiceRequestDto serviceRequestDto) {
+        // Find the existing ServiceRequest or throw an exception if not found
+        ServiceRequest existingServiceRequest = serviceRequestRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("ServiceRequest not found"));
+
+        // Update the fields of the existing ServiceRequest with values from the DTO
+        existingServiceRequest.setDate(serviceRequestDto.getDate());
+        existingServiceRequest.setCar(serviceRequestDto.getCar());
+        existingServiceRequest.setCaruserDetails(serviceRequestDto.getCaruserDetails());
+        existingServiceRequest.setSavedAddress(serviceRequestDto.getSavedAddress());
+        existingServiceRequest.setStatus(serviceRequestDto.getStatus()); // Update status
+        existingServiceRequest.setPayment(serviceRequestDto.getPayment());
+
+        // Save the updated ServiceRequest back to the database
+        ServiceRequest updatedServiceRequest = serviceRequestRepository.save(existingServiceRequest);
+
+        // Convert the updated entity back to a DTO and return it
+        return ServiceRequestMapper.mapToServiceRequestDto(updatedServiceRequest);
     }
-    public ServiceRequestDto deleteServiceAdress(int id) {
+
+    @Override
+    public ServiceRequestDto deleteServiceAddress(int id) {
         ServiceRequest serviceRequest = serviceRequestRepository.findById(id).orElseThrow(()-> new RuntimeException("Service request does not exist"));
         ServiceRequestDto serviceRequestDto = ServiceRequestMapper.mapToServiceRequestDto(serviceRequest);
         serviceRequestRepository.deleteById(id);

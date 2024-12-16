@@ -10,8 +10,10 @@ public class ServiceRequestMapper {
                 serviceRequestDto.getRequestId(),
                 serviceRequestDto.getDate(),
                 serviceRequestDto.getCar(),
-                serviceRequestDto.getUserDetails(),
-                serviceRequestDto.getSavedAddress()
+                serviceRequestDto.getCaruserDetails(),
+                serviceRequestDto.getSavedAddress(),
+                serviceRequestDto.getStatus(),
+                serviceRequestDto.getPayment()
         );
         return serviceRequest;
     }
@@ -21,8 +23,10 @@ public class ServiceRequestMapper {
                 serviceRequest.getRequestId(),
                 serviceRequest.getDate(),
                 serviceRequest.getCar(),
-                serviceRequest.getUserDetails(),
-                serviceRequest.getSavedAddress()
+                serviceRequest.getCaruserDetails(),
+                serviceRequest.getSavedAddress(),
+                serviceRequest.getStatus(),
+                serviceRequest.getPayment()
         );
         return serviceRequestDto;
     }

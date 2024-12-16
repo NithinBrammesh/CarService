@@ -12,11 +12,11 @@ public class WebConfig {
         return new WebMvcConfigurer() {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
-                registry.addMapping("/**") // Apply to all endpoints
-                        .allowedOrigins("http://localhost:9003/", "http://127.0.0.1:5500/")
+                registry.addMapping("/**") // Apply to all endpoints http://localhost:9003/
+                        .allowedOrigins("http://localhost:9003", "http://localhost:9002","http://127.0.0.1:5500")
                         .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS") // Allow specific methods
-                        .allowedHeaders("Content-Type", "application/json"); // Allow specific headers
-
+                        .allowedHeaders("Content-Type", "application/json") // Allow specific headers
+                        .allowedHeaders("*");
             }
         };
     }

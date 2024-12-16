@@ -1,12 +1,10 @@
 package com.example.car.CarService;
 
 import com.example.car.CarService.dto.UserDetailsDto;
-import com.example.car.CarService.model.UserDetails;
-import org.springframework.boot.autoconfigure.security.SecurityProperties;
 
 import java.util.List;
 
-public interface UserDetailsService {
+public interface CarUserDetailsService {
     UserDetailsDto createUserDetails(UserDetailsDto userDetailsDto);
 
     List<UserDetailsDto> getAllUserDetails();

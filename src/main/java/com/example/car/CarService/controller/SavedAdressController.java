@@ -12,6 +12,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/saved_addresses")
+@CrossOrigin(origins = "http://127.0.0.1:5500/CarServiceFrontend/SavedAddress.html")
 public class SavedAdressController {
     @Autowired
     private SavedAddressServiceImpl savedAddressServiceImpl;

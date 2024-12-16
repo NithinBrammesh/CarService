@@ -20,27 +20,32 @@ public class ServiceRequestController {
         this.serviceRequestService = serviceRequestService;
     }
 
-    @PostMapping
-    ResponseEntity<ServiceRequestDto> AddServiceRequest(@RequestBody ServiceRequestDto serviceRequestDto){
-        return new ResponseEntity<>(serviceRequestService.createServiceRequest(serviceRequestDto),HttpStatus.CREATED);
-    }
-
-
     @GetMapping
     public ResponseEntity<List<ServiceRequestDto>> getAllServicerequest(){
         List<ServiceRequestDto> serviceRequestDto = serviceRequestService.getAllServiceRequest();
         return ResponseEntity.ok(serviceRequestDto);
     }
 
-    @GetMapping("/{Request_ID}")
-    public ResponseEntity<ServiceRequestDto> getServiceRequestById(@PathVariable("{Request_ID}") int Request_Id){
-        ServiceRequestDto serviceRequestDto = serviceRequestService.getServiceRequestById(Request_Id);
+    @PostMapping
+    ResponseEntity<ServiceRequestDto> AddServiceRequest(@RequestBody ServiceRequestDto serviceRequestDto){
+        return new ResponseEntity<>(serviceRequestService.createServiceRequest(serviceRequestDto),HttpStatus.CREATED);
+    }
+
+    @PutMapping("/{requestId}")
+    public ResponseEntity<ServiceRequestDto> updateServiceRequest(@PathVariable int requestId, @RequestBody ServiceRequestDto serviceRequestDto) {
+        ServiceRequestDto updatedRequest = serviceRequestService.updateServiceRequest(requestId, serviceRequestDto);
+        return ResponseEntity.ok(updatedRequest);
+    }
+
+    @GetMapping("/{requestId}")
+    public ResponseEntity<ServiceRequestDto> getServiceRequestById(@PathVariable("requestId") int requestId){
+        ServiceRequestDto serviceRequestDto = serviceRequestService.getServiceRequestById(requestId);
         return ResponseEntity.ok(serviceRequestDto);
     }
 
-    @DeleteMapping("/{Request_ID}")
-    public ResponseEntity<ServiceRequestDto> deleteServiceRequestById(@PathVariable ("{Request_ID}") int Request_Id){
-        ServiceRequestDto deleteServiceRequestDto = serviceRequestService.getServiceRequestById(Request_Id);
+    @DeleteMapping("/{requestId}")
+    public ResponseEntity<ServiceRequestDto> deleteServiceRequestById(@PathVariable ("requestId") int requestId){
+        ServiceRequestDto deleteServiceRequestDto = serviceRequestService.deleteServiceAddress(requestId);
        return ResponseEntity.ok(deleteServiceRequestDto);
     }
 

@@ -1,15 +1,13 @@
 package com.example.car.CarService.service.Impl;
 
 import com.example.car.CarService.SavedAddressService;
-import com.example.car.CarService.model.UserDetails;
+import com.example.car.CarService.model.carUserDetails;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.example.car.CarService.dto.SavedAddressDto;
 import com.example.car.CarService.mapper.SavedAddressMapper;
 import com.example.car.CarService.model.SavedAddress;
 import com.example.car.CarService.repository.SavedAddressRepository;
-
-
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -39,7 +37,7 @@ public class SavedAddressServiceImpl implements SavedAddressService {
         savedAddress.setState(savedAddressDto.getState());
         savedAddress.setNation(savedAddressDto.getNation());
         // Set the user by userId
-        savedAddress.setUserDetails(new UserDetails(savedAddressDto.getUserId()));
+        savedAddress.setCarUserDetails(new carUserDetails(savedAddressDto.getUserId()));
 
         SavedAddress saved = savedAddressRepository.save(savedAddress);
         return SavedAddressMapper.mapToSavedAddressDto(saved);
@@ -81,3 +79,5 @@ public class SavedAddressServiceImpl implements SavedAddressService {
         return savedAddressDto;
     }
 }
+
+

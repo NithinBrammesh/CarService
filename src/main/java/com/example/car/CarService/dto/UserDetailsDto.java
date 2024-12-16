@@ -5,15 +5,14 @@ import lombok.*;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-
 public class UserDetailsDto {
-    private int UserId;
+    private int userId;
 
-    private String Name;
+    private String name;
 
-    private Long PhoneNo;
+    private Long phoneNo;
 
-    private String Email;
+    private String email;
 
-    private String Password;
+    private String password;
 }

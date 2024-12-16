@@ -1,6 +1,9 @@
 package com.example.car.CarService.dto;
 
+import com.example.car.CarService.model.Car;
 import lombok.*;
+
+import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -12,4 +15,5 @@ public class CarDto {
     private String CarType;
 
     private int Price;
+
 }
