@@ -6,7 +6,7 @@ import com.example.car.CarService.model.ServiceRequest;
 public class ServiceRequestMapper {
 
     public static ServiceRequest mapToServiceRequest(ServiceRequestDto serviceRequestDto) {
-        ServiceRequest serviceRequest = new ServiceRequest(
+        return new ServiceRequest(
                 serviceRequestDto.getRequestId(),
                 serviceRequestDto.getDate(),
                 serviceRequestDto.getCar(),
@@ -15,11 +15,10 @@ public class ServiceRequestMapper {
                 serviceRequestDto.getStatus(),
                 serviceRequestDto.getPayment()
         );
-        return serviceRequest;
     }
 
     public static ServiceRequestDto mapToServiceRequestDto(ServiceRequest serviceRequest) {
-        ServiceRequestDto serviceRequestDto = new ServiceRequestDto(
+        return new ServiceRequestDto(
                 serviceRequest.getRequestId(),
                 serviceRequest.getDate(),
                 serviceRequest.getCar(),
@@ -28,6 +27,5 @@ public class ServiceRequestMapper {
                 serviceRequest.getStatus(),
                 serviceRequest.getPayment()
         );
-        return serviceRequestDto;
     }
 }

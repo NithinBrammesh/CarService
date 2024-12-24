@@ -10,7 +10,7 @@ import lombok.*;
 @Entity
 @AllArgsConstructor
 @Data
-@Table(name = "Saved_address")
+@Table(name = "saved_address")
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})  // Ignore Hibernate Lazy Initialization & Handler
 public class SavedAddress {
 
@@ -44,4 +44,5 @@ public class SavedAddress {
     @JoinColumn(name = "User_id", referencedColumnName = "User_id", nullable = false)
     @JsonBackReference  // This prevents recursive serialization from carUserDetails to SavedAddress
     private carUserDetails carUserDetails;
+
 }

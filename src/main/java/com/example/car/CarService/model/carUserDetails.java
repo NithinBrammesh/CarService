@@ -1,5 +1,6 @@
 package com.example.car.CarService.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
@@ -15,7 +16,7 @@ import java.util.List;
 @AllArgsConstructor
 @Builder
 @Entity
-@Table(name="User_details")
+@Table(name="user_details")
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})  // Ignore Hibernate Lazy Initialization & Handler
 public class carUserDetails {
 
@@ -36,8 +37,11 @@ public class carUserDetails {
     @Column(name = "Password")
     private String password;
 
+//    @OneToMany(mappedBy = "carUserDetails", cascade = CascadeType.ALL, orphanRemoval = true)
+//    @JsonManagedReference  // This manages the back-reference in SavedAddress
+//    private List<SavedAddress> savedAddresses;
     @OneToMany(mappedBy = "carUserDetails", cascade = CascadeType.ALL, orphanRemoval = true)
-    @JsonManagedReference  // This manages the back-reference in SavedAddress
+    @JsonIgnore
     private List<SavedAddress> savedAddresses;
 
     // Constructor with only userId

@@ -12,8 +12,6 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -25,8 +23,8 @@ import org.springframework.security.web.SecurityFilterChain;
 @EnableWebSecurity
 public class SecurityConfig {
 
+
     @Autowired
-    @Lazy
     private UserDetailsService userDetailsService; // the UserdetailsService is fetched from spring security (org.springframework.security.core.userdetails.UserDetailsService)
 
     @Bean
@@ -41,24 +39,6 @@ public class SecurityConfig {
         .build();
     }
 
- /*   @Bean
-    public UserDetailsService userDetailsService(){
-        UserDetails user1 = User            //UserDetails and User are fetched by interface  org.springframework.security.core.userdetails.UserDetails;
-                .withDefaultPasswordEncoder()
-                .username("kiran")
-                .password("k@123")
-                .roles("USER")
-                .build();
-
-        UserDetails user2 = User
-                .withDefaultPasswordEncoder()
-                .username("harsh")
-                .password("h@123")
-                .roles("ADMIN")
-                .build();
-        return new InMemoryUserDetailsManager(user1, user2);
-    }
-*/
 
 
 //    @Bean
